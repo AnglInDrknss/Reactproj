@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState("Artemii")
+  const [pokemon, setPokemon] = useState(null)
+
+  const HandleSearchPokemon = async() => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const data = await response.json();
+
+    setPokemon({
+      name: data.name,
+      image: data.sprites.front_default,
+      height: data.height,
+      weight: data.weight,
+      types: data.types.map(t => t.type.name),
+    });
+  } 
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Pokémon Viewer</h1>
+      <p className='subtitle'>Загрузи любого покемона из интернета</p>
+
+      <div className='controls'>
+        <input id='pokemonInput' type='text' placeholder='Например: pikachu' onChange={(e) => setName(e.target.value)}/>
+        <button id='loadBtn' onClick={HandleSearchPokemon}>Загрузить</button>
+        <button id='randomBtn'>🎲 Random</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <p id='status' className='status'></p>
+
+      <div id='card' className='card-container'>
+        {pokemon ? (
+          <div className='card'>
+            <h2>{pokemon.name}</h2>
+            <img src={pokemon.image} />
+
+            <p>Рост: {pokemon.height}</p>
+            <p>Вес: {pokemon.weight}</p>
+
+            <div className='types'>
+              <span className='type'>Thunder</span>
+            </div>
+          </div>
+        ) : (
+          "null"
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
+
 
 export default App

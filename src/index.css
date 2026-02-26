@@ -1,68 +1,99 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: white;
+}
+
+#root {
+  max-width: 420px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 25px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
 }
 
 button {
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 10px 14px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-weight: 600;
+  background: #22c55e;
+  color: white;
+  transition: 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button:hover {
+  transform: translateY(-1px);
+}
+
+.status {
+  margin-top: 15px;
+  min-height: 20px;
+  opacity: 0.8;
+}
+
+.card-container {
+  margin-top: 25px;
+}
+
+.card {
+  background: white;
+  color: #111;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: appear 0.25s ease;
+}
+
+.card img {
+  width: 160px;
+}
+
+.types {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.type {
+  background: #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
