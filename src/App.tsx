@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./components/Header";
 
 function App() {
   const [name, setName] = useState("Artemii")
@@ -27,8 +28,7 @@ function App() {
   }
   return (
     <>
-      <h1>Pokémon Viewer</h1>
-      <p className='subtitle'>Загрузи любого покемона из интернета</p>
+      <Header/>
 
       <div className='controls'>
         <input id='pokemonInput' type='text' placeholder='Например: pikachu' onChange={(e) => setName(e.target.value)}/>
@@ -49,7 +49,7 @@ function App() {
 
             <div className='types'>
               {pokemon.types.map(type => (
-                <span className="type">{type}</span>
+                <span key = {type} className="type">{type}</span>
               ))}
             </div>
           </div>
